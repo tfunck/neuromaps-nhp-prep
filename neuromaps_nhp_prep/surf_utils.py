@@ -83,7 +83,9 @@ def msm_resample_list(rsl_mesh, fixed_mesh, labels, output_dir, clobber=False):
 
     return labels_rsl_list
 
-def msm_resample(rsl_mesh, fixed_mesh, label=None, output_dir:str='', write_darrays:bool=False, clobber=False):
+def msm_resample(
+        rsl_mesh, fixed_mesh, label=None, output_dir:str='', write_darrays:bool=False, clobber=False
+        ):
     output_label_basename = os.path.basename(label).replace('.func','').replace('.gii','') + '_rsl'
     if output_dir == '':
         output_dir = os.path.dirname(label)
