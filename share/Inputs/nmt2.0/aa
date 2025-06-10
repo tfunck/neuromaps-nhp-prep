@@ -1,0 +1,10 @@
+gii2obj NMT_v2.0_sym_lh.gray_surface.rsl.gii
+gii2obj NMT_v2.0_sym_lh.mid_surface.rsl.gii
+gii2obj NMT_v2.0_sym_lh.white_surface.rsl.gii
+gii2obj NMT_v2.0_sym_rh.gray_surface.rsl.gii
+gii2obj NMT_v2.0_sym_rh.mid_surface.rsl.gii
+gii2obj NMT_v2.0_sym_rh.white_surface.rsl.gii
+gii2obj rh.NMT_v2.0_sym_lh.mid_surface_inflated.rsl.gii
+gii2obj rh.NMT_v2.0_sym_lh.mid_surface_sphere.rsl.gii
+gii2obj rh.NMT_v2.0_sym_rh.mid_surface_inflated.rsl.gii
+gii2obj rh.NMT_v2.0_sym_rh.mid_surface_sphere.rsl.gii
