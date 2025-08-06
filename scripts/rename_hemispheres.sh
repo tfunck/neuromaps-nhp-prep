@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # Change this path to the local root of the repo
-BASE="/Users/tamsin.rogers/Desktop/github/thomas/neuromaps-nhp-prep/share"
+BASE="neuromaps-nhp-prep/share"
 
 cd "$BASE" || { echo "Cannot cd to $BASE"; exit 1; }
 
