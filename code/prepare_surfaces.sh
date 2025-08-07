@@ -13,11 +13,11 @@ pial_right_surf="${dir}/rh.MEBRAINS.pial.surf.gii"
 wm_left_surf="${dir}/lh.MEBRAINS.smoothwm.surf.gii"
 wm_right_surf="${dir}/rh.MEBRAINS.smoothwm.surf.gii"
 
-inflated_left_surf="${dir}/lh.MEBRAINS.smoothwm.inflated.surf.gii"
-inflated_right_surf="${dir}/rh.MEBRAINS.smoothwm.inflated.surf.gii"
+inflated_left_surf="${dir}/lh.MEBRAINS.inflated.surf.gii"
+inflated_right_surf="${dir}/rh.MEBRAINS.inflated.surf.gii"
 
-sphere_left_surf="${dir}/lh.MEBRAINS.smoothwm.sphere.surf.gii"
-sphere_right_surf="${dir}/rh.MEBRAINS.smoothwm.sphere.surf.gii"
+sphere_left_surf="${dir}/lh.MEBRAINS.sphere.surf.gii"
+sphere_right_surf="${dir}/rh.MEBRAINS.sphere.surf.gii"
 
 if [[ ! -f $sphere_left_surf ]]; then
 	wb_command -surface-average $mid_left_surf  -surf $pial_left_surf -surf $wm_left_surf
@@ -36,14 +36,14 @@ fi
 ##############
 dir="data/nmt2.0/surfaces/";
 
-mid_left_surf="${dir}NMT_v2.0_sym_lh.mid_surface.rsl.gii"
-mid_right_surf="${dir}NMT_v2.0_sym_rh.mid_surface.rsl.gii"
+mid_left_surf="${dir}/NMT_v2.0_sym_lh.mid_surface.rsl.gii"
+mid_right_surf="${dir}/NMT_v2.0_sym_rh.mid_surface.rsl.gii"
 
-inflated_left_surf="${dir}rh.NMT_v2.0_sym_lh.mid_surface_inflated.rsl.gii"
-inflated_right_surf="${dir}rh.NMT_v2.0_sym_rh.mid_surface_inflated.rsl.gii"
+inflated_left_surf="${dir}/NMT_v2.0_sym_lh.inflated_surface.rsl.gii"
+inflated_right_surf="${dir}/NMT_v2.0_sym_rh.inflated_surface.rsl.gii"
 
-sphere_left_surf="${dir}/NMT_v2.0_sym_lh.mid_surface_sphere.rsl.gii"
-sphere_right_surf="${dir}/NMT_v2.0_sym_rh.mid_surface_sphere.rsl.gii"
+sphere_left_surf="${dir}/NMT_v2.0_sym_lh.sphere_surface.rsl.gii"
+sphere_right_surf="${dir}/NMT_v2.0_sym_rh.sphere_surface.rsl.gii"
 
 
 if [[ ! -f  $sphere_left_surf ]]; then
