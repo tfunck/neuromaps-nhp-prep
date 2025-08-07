@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Root folder to search
-ROOT_FOLDER="/Users/tamsin.rogers/Desktop/github/thomas/neuromaps-nhp-prep/share/Inputs"
+ROOT_FOLDER="/Users/tamsin.rogers/Desktop/github/thomas/neuromaps-nhp-prep/share/Outputs"
 
 # Output CSV file
-OUTPUT_CSV="vertices.csv"
+OUTPUT_CSV="output_vertices.csv"
 
 # Write CSV header
 echo "Subdirectory,Filename,VertexCount" > "$OUTPUT_CSV"

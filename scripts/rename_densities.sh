@@ -1,7 +1,7 @@
 #!/bin/bash
 
-ROOT_FOLDER="/Users/tamsin.rogers/Desktop/github/thomas/neuromaps-nhp-prep/share/Inputs"
-CSV_FILE="vertices.csv"
+ROOT_FOLDER="/Users/tamsin.rogers/Desktop/github/thomas/neuromaps-nhp-prep/share/Outputs"
+CSV_FILE="output_vertices.csv"
 
 # Skip header line in CSV and read each line
 tail -n +2 "$CSV_FILE" | while IFS=, read -r subdir filename vertex_count; do
