@@ -86,7 +86,7 @@ def rename_inputs(input_dir: Path) -> None:
         "CIVETNMT": r"\w+_(?P<suffix>\w+)_\w+_(?P<hemi>\w+).(?P<ext>\w+\.gii)",
         "D99": r"\w+_\w+_(?P<suffix>\w+)_\w+_(?P<hemi>\w+).(?P<ext>\w+\.gii)",
         "MEBRAINS": r"(?P<hemi>\w+).\w+.(?P<suffix>\w+).(?P<ext>\w+\.gii)",
-        "NMT2Sym": r"\w+_v2\.0_(?P<desc>\w+)_(?P<hemi>\w+)\.(?P<suffix>\w+)_\w+.(?P<ext>\w+\.gii)",
+        "NMT2": r"\w+_v2\.0_(?P<desc>\w+)_(?P<hemi>\w+)\.(?P<suffix>\w+)_\w+.(?P<ext>\w+\.gii)",
         "S1200": r"\w+.(?P<hemi>\w+).(?P<suffix>\w+).\w+.(?P<ext>\w+\.gii)",
         "Yerkes19": r"\w+.(?P<hemi>\w+).(?P<suffix>\w+(?:_\w+)*).\w+.(?P<ext>\w+\.gii)",
     }
