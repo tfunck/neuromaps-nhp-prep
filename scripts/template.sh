@@ -1,44 +1,33 @@
 #!/bin/bash
 
-BASE="/Users/tamsin.rogers/Desktop/github/thomas/neuromaps-nhp-prep/share/Inputs"
+ROOT_FOLDER="/Users/tamsin.rogers/Desktop/github/thomas/neuromaps-nhp-prep/share/Inputs"
 
-# Step 1: Cleanup existing bad filenames starting with 'tpl-.'
-find "$BASE" -type f -name "tpl-.*" | while read -r filepath; do
+find "$ROOT_FOLDER" -type f -name "*surf*" | while read -r filepath; do
     dir=$(dirname "$filepath")
     filename=$(basename "$filepath")
+    subdir=$(basename "$dir")
 
-    # Only fix if filename starts exactly with 'tpl-.'
-    if [[ "$filename" == tpl-.* ]]; then
-        fixed_name="${filename/tpl-./tpl-}"
-        fixed_path="$dir/$fixed_name"
+    # Remove other instances of the subdir in the filename (case-insensitive)
+    filename_cleaned=$(echo "$filename" | sed -E "s/${subdir}//Ig")
 
-        if [[ "$filepath" != "$fixed_path" ]]; then
-            echo "Fixing filename:"
-            echo "  $filepath"
-            echo "  -> $fixed_path"
-            mv "$filepath" "$fixed_path"
-        fi
+    # Ensure filename starts with tpl-
+    if [[ "$filename_cleaned" != tpl-* ]]; then
+        filename_cleaned="tpl-${filename_cleaned}"
     fi
-done
 
-# Step 2: Rename files without 'tpl-' prefix, prepend 'tpl-' and strip leading dot from filename
-find "$BASE" -type f -name "*surf*" | while read -r filepath; do
-    dir=$(dirname "$filepath")
-    filename=$(basename "$filepath")
+    # Insert subdir after tpl- and before the rest, with trailing underscore
+    filename_fixed=$(echo "$filename_cleaned" | sed -E "s/^tpl-/tpl-${subdir}_/")
 
-    # Skip files already starting with 'tpl-'
-    if [[ "$filename" == tpl-* ]]; then
-        echo "Skipping already renamed: $filename"
+    # If filename didn't change, skip
+    if [[ "$filename" == "$filename_fixed" ]]; then
         continue
     fi
 
-    # Remove leading dot if present to avoid tpl-.filename
-    filename_no_dot="${filename#.}"
-
-    new_filepath="$dir/tpl-$filename_no_dot"
+    # Build new full path
+    newpath="${dir}/${filename_fixed}"
 
     echo "Renaming:"
     echo "  $filepath"
-    echo "  -> $new_filepath"
-    mv "$filepath" "$new_filepath"
+    echo "  -> $newpath"
+    mv "$filepath" "$newpath"
 done
