@@ -1,21 +1,21 @@
 #!/bin/bash
 
-BASE="/Users/tamsin.rogers/Desktop/github/thomas/neuromaps-nhp-prep/share/Inputs"
+BASE="/Users/tamsin.rogers/Desktop/github/thomas/neuromaps-nhp-prep/share/Inputs/NMT2"
 
-# Find all files starting with 'tpl-' and rename them to remove the prefix
-find "$BASE" -type f -name "tpl-*" | while read -r filepath; do
+find "$BASE" -type f -name "*.surf.surf.gii" | while read -r filepath; do
     dir=$(dirname "$filepath")
     filename=$(basename "$filepath")
 
-    # Only act on files that start with 'tpl-'
-    if [[ "$filename" == tpl-* ]]; then
-        # Remove the 'tpl-' prefix
-        new_filename="${filename#tpl-}"
-        new_filepath="$dir/$new_filename"
+    # Remove the duplicated '.surf.surf' to a single '.surf'
+    newname="${filename/.surf.surf/.surf}"
 
-        echo "Renaming:"
+    # If there are duplicated extensions like '.gii.gii', replace with one '.gii'
+    newname="${newname//.gii.gii/.gii}"
+
+    if [[ "$filename" != "$newname" ]]; then
+        echo "Cleaning:"
         echo "  $filepath"
-        echo "  -> $new_filepath"
-        mv "$filepath" "$new_filepath"
+        echo "  -> $dir/$newname"
+        mv "$filepath" "$dir/$newname"
     fi
 done
