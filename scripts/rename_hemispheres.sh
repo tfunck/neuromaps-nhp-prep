@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ROOT_FOLDER="/Users/tamsin.rogers/Desktop/github/thomas/neuromaps-nhp-prep/share/Inputs/CIVETNMT"
+ROOT_FOLDER="/Users/tamsin.rogers/Desktop/github/thomas/neuromaps-nhp-prep/share/Inputs/D99"
 
 find "$ROOT_FOLDER" -type f -name "*surf*.gii" | while read -r filepath; do
     filename=$(basename "$filepath")
