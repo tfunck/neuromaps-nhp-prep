@@ -3,54 +3,22 @@
 ROOT_FOLDER="/Users/tamsin.rogers/Desktop/github/thomas/neuromaps-nhp-prep/share/Inputs"
 CSV_FILE="input_vertices.csv"
 
-vertex_to_density() {
-    local vertices=$1
-    if (( vertices >= 1000 )); then
-        echo "$((vertices / 1000))k"
+# Skip header and read each line
+tail -n +2 "$CSV_FILE" | while IFS=',' read -r SUBDIR FILENAME VERTEX_COUNT; do
+    # Construct full path to the file
+    DIR_PATH="$ROOT_FOLDER/$SUBDIR"
+    FILE_PATH="$DIR_PATH/$FILENAME"
+
+    # Check if the file exists
+    if [[ -f "$FILE_PATH" ]]; then
+        # Build new filename with density prefix
+        NEW_FILENAME="den-${VERTEX_COUNT}_$FILENAME"
+        NEW_PATH="$DIR_PATH/$NEW_FILENAME"
+
+        # Rename the file
+        mv "$FILE_PATH" "$NEW_PATH"
+        echo "Renamed: $FILE_PATH -> $NEW_PATH"
     else
-        echo "${vertices}"
+        echo "File not found: $FILE_PATH"
     fi
-}
-
-tail -n +2 "$CSV_FILE" | while IFS=, read -r subdir filename vertexcount; do
-    density=$(vertex_to_density "$vertexcount")
-    folder_path="${ROOT_FOLDER}/${subdir}"
-
-    find "$folder_path" -type f -name '*surf*' | while read -r file; do
-        basefile=$(basename "$file")
-        dir=$(dirname "$file")
-
-        # Remove all _den-xxx tags anywhere
-        cleaned="$basefile"
-        while [[ "$cleaned" =~ _den-[^_\.]+ ]]; do
-            cleaned="${cleaned/_den-[^_\.]*/}"
-        done
-
-        # Insert _den-{density}_ before the hemi tag if present
-        if [[ "$cleaned" =~ (_hemi-[^_]+) ]]; then
-            hemi_part="${BASH_REMATCH[1]}"
-            # Remove the hemi part from cleaned to insert density before it
-            prefix="${cleaned%$hemi_part}"
-            suffix="${cleaned##*$hemi_part}"
-            newname="${prefix}_den-${density}${hemi_part}${suffix}"
-        else
-            # No hemi tag, just append at the end before extension
-            if [[ "$cleaned" == *.* ]]; then
-                newname="${cleaned%.*}_den-${density}.${cleaned##*.}"
-            else
-                newname="${cleaned}_den-${density}"
-            fi
-        fi
-
-        newfile="$dir/$newname"
-
-        if [[ "$file" != "$newfile" ]]; then
-            echo "Renaming:"
-            echo "  $file"
-            echo "  $newfile"
-            mv "$file" "$newfile"
-        else
-            echo "No rename needed for $file"
-        fi
-    done
 done

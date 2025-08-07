@@ -1,25 +1,21 @@
 #!/bin/bash
 
-ROOT_FOLDER="/Users/tamsin.rogers/Desktop/github/thomas/neuromaps-nhp-prep/share/Inputs"
+BASE="/Users/tamsin.rogers/Desktop/github/thomas/neuromaps-nhp-prep/share/Inputs"
 
-# Find files with _den- in their names
-find "$ROOT_FOLDER" -type f -name '*_den-*' | while read -r file; do
-    basefile=$(basename "$file")
-    dir=$(dirname "$file")
+# Find all files starting with 'tpl-' and rename them to remove the prefix
+find "$BASE" -type f -name "tpl-*" | while read -r filepath; do
+    dir=$(dirname "$filepath")
+    filename=$(basename "$filepath")
 
-    # Remove _den-xxx only if it's followed by _hemi- or elsewhere in the name
-    # This regex removes _den-xxx anywhere
-    reverted=$(echo "$basefile" | sed -E 's/_den-[^_\.]+//g')
+    # Only act on files that start with 'tpl-'
+    if [[ "$filename" == tpl-* ]]; then
+        # Remove the 'tpl-' prefix
+        new_filename="${filename#tpl-}"
+        new_filepath="$dir/$new_filename"
 
-    # Construct new full path
-    newfile="$dir/$reverted"
-
-    if [[ "$file" != "$newfile" ]]; then
-        echo "Reverting:"
-        echo "  $file"
-        echo "  $newfile"
-        mv "$file" "$newfile"
-    else
-        echo "No revert needed for $file"
+        echo "Renaming:"
+        echo "  $filepath"
+        echo "  -> $new_filepath"
+        mv "$filepath" "$new_filepath"
     fi
 done
