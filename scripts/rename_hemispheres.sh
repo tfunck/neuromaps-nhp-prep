@@ -1,8 +1,8 @@
 #!/bin/bash
 
-ROOT_FOLDER="/Users/tamsin.rogers/Desktop/github/thomas/neuromaps-nhp-prep/share/Inputs/MEBRAINS"
+ROOT_FOLDER="/Users/tamsin.rogers/Desktop/github/thomas/neuromaps-nhp-prep/share/Inputs/NMT2"
 
-find "$ROOT_FOLDER" -type f -name "*surf*.gii" | while read -r filepath; do
+find "$ROOT_FOLDER" -type f -name "*.gii" | while read -r filepath; do
     filename=$(basename "$filepath")
     dir=$(dirname "$filepath")
 
@@ -16,12 +16,12 @@ find "$ROOT_FOLDER" -type f -name "*surf*.gii" | while read -r filepath; do
         continue
     fi
 
-    # Remove the hemisphere tag (_lh or _rh)
+    # Remove _lh or _rh from filename
     newname=$(echo "$filename" | sed -E 's/_(lh|rh)//')
 
-    # Insert hemi tag before .surf.gii
-    base="${newname%.surf.gii}"
-    new_filename="${base}_hemi-${hemi}_sphere.surf.gii"
+    # Insert hemi tag before .gii extension
+    base="${newname%.gii}"
+    new_filename="${base}_hemi-${hemi}_sphere.gii"
 
     echo "Renaming:"
     echo "  $filepath"
