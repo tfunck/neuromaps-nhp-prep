@@ -1,25 +1,16 @@
 #!/bin/bash
 
-# Root folder to search
-ROOT_FOLDER="/Users/tamsin.rogers/Desktop/github/thomas/neuromaps-nhp-prep/share/Outputs"
-
-# Output CSV file
-OUTPUT_CSV="output_vertices.csv"
+ROOT_FOLDER="/Users/tamsin.rogers/Desktop/github/thomas/neuromaps-nhp-prep/share/Inputs"
+OUTPUT_CSV="input_vertices.csv"
 
 # Write CSV header
 echo "Subdirectory,Filename,VertexCount" > "$OUTPUT_CSV"
 
-# Find all .gii files with "surf" in the name in subdirectories
-find "$ROOT_FOLDER" -type f -name "*surf*.gii" | while IFS= read -r filepath; do
-    # Get subdirectory relative to ROOT_FOLDER
-    subdir=$(dirname "$filepath" | sed "s|$ROOT_FOLDER/||")
-    
-    # Get filename
+# Find all files containing "surface" in filename under ROOT_FOLDER
+find "$ROOT_FOLDER" -type f -name "*surf*" | while read -r filepath; do
+    echo "Processing file: $filepath"
     filename=$(basename "$filepath")
-    
-    # Run the Python script to get vertex count
+    subdir=$(dirname "$filepath" | sed "s|$ROOT_FOLDER/||")
     vertex_count=$(python3 vertices.py "$filepath")
-    
-    # Append to CSV without quotes
     echo "$subdir,$filename,$vertex_count" >> "$OUTPUT_CSV"
 done

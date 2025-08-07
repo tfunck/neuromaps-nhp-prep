@@ -1,59 +1,65 @@
 #!/bin/bash
 
-ROOT_FOLDER="/Users/tamsin.rogers/Desktop/github/thomas/neuromaps-nhp-prep/share/Outputs"
-CSV_FILE="output_vertices.csv"
+ROOT_FOLDER="/Users/tamsin.rogers/Desktop/github/thomas/neuromaps-nhp-prep/share/Inputs"
+CSV_FILE="input_vertices.csv"
 
-# Skip header line in CSV and read each line
-tail -n +2 "$CSV_FILE" | while IFS=, read -r subdir filename vertex_count; do
-    # Construct full path to the original file
-    original_path="$ROOT_FOLDER/$subdir/$filename"
-
-    # Check file exists
-    if [[ ! -f "$original_path" ]]; then
-        echo "File not found: $original_path"
-        continue
+# Function to convert vertex count to density string, e.g. 41000 -> 41k
+vertex_to_density() {
+    local vertices=$1
+    if (( vertices >= 1000 )); then
+        echo "$((vertices / 1000))k"
+    else
+        echo "${vertices}"
     fi
+}
 
-    # Extract parts of filename based on underscores
-    # Example: macaque_mid_mc_L.surf.gii
-    # Goal: macaque_mid_mc_den-41k_L.surf.gii
+# Read the CSV file, skip header
+tail -n +2 "$CSV_FILE" | while IFS=, read -r subdir filename vertexcount; do
+    # Get the density tag string
+    density=$(vertex_to_density "$vertexcount")
 
-    # Separate extension(s)
-    base_name="${filename%.*}"         # Remove extension -> macaque_mid_mc_L.surf
-    extension="${filename##*.}"        # Get last extension -> gii
+    # Construct full folder path
+    folder_path="${ROOT_FOLDER}/${subdir}"
 
-    # Handle cases with multiple extensions like .surf.gii
-    if [[ "$base_name" == *.* ]]; then
-        second_ext="${base_name##*.}"          # e.g. surf
-        base_name="${base_name%.*}"            # e.g. macaque_mid_mc_L
-        extension="$second_ext.$extension"     # e.g. surf.gii
-    fi
+    # We want to find the file inside folder_path matching filename or similar but:
+    # Filename in CSV may not exactly match the file name on disk, so instead we will
+    # try to find any file in folder_path containing "surf" and base name matching filename (without extension)
+    # Actually simpler: find files containing "surf" in folder_path, then check if the filename base matches csv filename base
+    # But CSV might have different naming, so let's just find all files with surf in the full folder_path/subdir and update all.
 
-    # Split base_name by underscores into an array
-    IFS='_' read -r -a parts <<< "$base_name"
+    # Let's find all files with "surf" in their name inside this subdir
+    find "$folder_path" -type f -name '*surf*' | while read -r file; do
+        basefile=$(basename "$file")
 
-    # Insert den-<vertex_count> before the last part
-    last_index=$((${#parts[@]} - 1))
-    new_filename=""
+        # Remove any existing density tags den-* in filename
+        # Use regex to remove den-[^_]* or den-[^\.]* pattern
 
-    for i in "${!parts[@]}"; do
-        if [[ $i -eq $last_index ]]; then
-            new_filename+="den-$vertex_count"_"${parts[$i]}"
+        # For safety, remove all "den-XXX" tags anywhere in the filename before the extension
+        newbase=$(echo "$basefile" | sed -E 's/_?den-[^_\.]+//g')
+
+        # Insert new density tag before the first _left/_right/_L/_R or before ".surf"
+        # We'll try to put _den-{density} before .surf
+
+        # If filename contains .surf, insert before .surf
+        if [[ "$newbase" =~ \.surf ]]; then
+            newname=$(echo "$newbase" | sed -E "s/\.surf/_den-${density}.surf/")
         else
-            new_filename+="${parts[$i]}_"
+            # just append _den-{density} before extension
+            newname=$(echo "$newbase" | sed -E "s/(\.[^.]+)$/_den-${density}\1/")
+        fi
+
+        # Construct full new path
+        newfile="$(dirname "$file")/$newname"
+
+        # Rename the file if newname is different
+        if [[ "$file" != "$newfile" ]]; then
+            echo "Renaming:"
+            echo "  $file"
+            echo "  $newfile"
+            mv "$file" "$newfile"
+        else
+            echo "No rename needed for $file"
         fi
     done
-
-    # Append the extension
-    new_filename+=".$extension"
-
-    # Full new path
-    new_path="$ROOT_FOLDER/$subdir/$new_filename"
-
-    # Rename the file
-    echo "Renaming:"
-    echo "  $original_path"
-    echo "  -> $new_path"
-    mv "$original_path" "$new_path"
 
 done
