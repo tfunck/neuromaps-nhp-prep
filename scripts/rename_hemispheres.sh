@@ -1,78 +1,82 @@
-#!/usr/bin/env bash
-set -euo pipefail
+#!/bin/bash
 
-# Updated root folder path
 BASE="/Users/tamsin.rogers/Desktop/github/thomas/neuromaps-nhp-prep/share"
 
-cd "$BASE" || { echo "Cannot cd to $BASE"; exit 1; }
+detect_hemisphere() {
+  local filename="$1"
+  local lower=$(echo "$filename" | tr '[:upper:]' '[:lower:]')
 
-for dir in Inputs/* Outputs/*; do
-  [ -d "$dir" ] || continue
+  local left=0
+  local right=0
 
-  # Find files with "surf" anywhere in filename
-  find "$dir" -type f -name "*surf*" -print0 | while IFS= read -r -d '' path; do
-    filename=$(basename "$path")
-    dirpath=$(dirname "$path")
-    original_name="$filename"
+  if [[ "$lower" =~ (^|[^a-z])left([^a-z]|$) || "$lower" =~ (^|[^a-z])lh([^a-z]|$) || "$lower" =~ (^|[^a-z])l([^a-z]|$) ]]; then
+    left=1
+  fi
+  if [[ "$lower" =~ (^|[^a-z])right([^a-z]|$) || "$lower" =~ (^|[^a-z])rh([^a-z]|$) || "$lower" =~ (^|[^a-z])r([^a-z]|$) ]]; then
+    right=1
+  fi
 
-    # Fix redundant _L_hemi-L, _R_hemi-R, _LR_hemi-LR suffixes
-    if [[ "$filename" =~ _L_hemi-L_sphere ]]; then
-      fixed_name="${filename/_L_hemi-L_sphere/_hemi-L_sphere}"
-      echo "Fixing redundant L suffix: $filename → $fixed_name"
-      mv -v "$path" "$dirpath/$fixed_name"
-      continue
-    elif [[ "$filename" =~ _R_hemi-R_sphere ]]; then
-      fixed_name="${filename/_R_hemi-R_sphere/_hemi-R_sphere}"
-      echo "Fixing redundant R suffix: $filename → $fixed_name"
-      mv -v "$path" "$dirpath/$fixed_name"
-      continue
-    elif [[ "$filename" =~ _LR_hemi-LR_sphere ]]; then
-      fixed_name="${filename/_LR_hemi-LR_sphere/_hemi-LR_sphere}"
-      echo "Fixing redundant LR suffix: $filename → $fixed_name"
-      mv -v "$path" "$dirpath/$fixed_name"
-      continue
-    fi
+  if [[ $left -eq 1 && $right -eq 1 ]]; then
+    echo "hemi-LR_sphere"
+  elif [[ $left -eq 1 ]]; then
+    echo "hemi-L_sphere"
+  elif [[ $right -eq 1 ]]; then
+    echo "hemi-R_sphere"
+  else
+    echo ""
+  fi
+}
 
-    # Normalize left/right to L/R
-    norm_name="${filename//left/L}"
-    norm_name="${norm_name//right/R}"
+check_for_stray_hemisphere_tags() {
+  local fullpath="$1"
+  local lower=$(echo "$fullpath" | tr '[:upper:]' '[:lower:]')
 
-    # Determine hemisphere from normalized name
-    hemi=""
-    if [[ "$norm_name" == *LR* ]]; then
-      hemi="LR"
-    elif [[ "$norm_name" == *lh* && "$norm_name" == *rh* ]]; then
-      hemi="LR"
-    elif [[ "$norm_name" == *lh* || "$norm_name" == *L* ]]; then
-      hemi="L"
-    elif [[ "$norm_name" == *rh* || "$norm_name" == *R* ]]; then
-      hemi="R"
-    fi
+  # Remove valid hemisphere token(s)
+  local lower_cleaned=$(echo "$lower" | sed -E 's/_hemi-(l|r|lr)_sphere//g')
 
-    # Skip if no hemisphere detected
-    [[ -z "$hemi" ]] && continue
+  # Look for stray tokens: separated by any non-letter character or string boundaries
+  if echo "$lower_cleaned" | grep -E -q '([^a-z]|^)left([^a-z]|$)|([^a-z]|^)right([^a-z]|$)|([^a-z]|^)lh([^a-z]|$)|([^a-z]|^)rh([^a-z]|$)|([^a-z])l([^a-z])|([^a-z])r([^a-z])'; then
+    echo "⚠️  Stray hemisphere tag in: $fullpath"
+  fi
+}
 
-    # Remove all instances of lh, rh, LR anywhere
-    clean_name=$(echo "$norm_name" | sed -E 's/lh//g; s/rh//g; s/LR//g')
+find "$BASE" -type f -name '*surf*' | while read -r filepath; do
+  filename=$(basename "$filepath")
+  dirpath=$(dirname "$filepath")
 
-    # Remove stray L or R prefixes or dots anywhere except inside _hemi- pattern
-    # Remove leading L. or R. if present
-    clean_name=$(echo "$clean_name" | sed -E 's/^[LR]\.//')
+  hemi_label=$(detect_hemisphere "$filename")
 
-    # Remove stray _L, -L, _R, -R, _LR, -LR before extension (only outside hemi suffix)
-    clean_name=$(echo "$clean_name" | sed -E "s/[_-](${hemi})(\.[^.]+$)/\1\2/")
+  if [[ -z "$hemi_label" ]]; then
+    echo "No hemisphere tag found in: $filename — skipping."
+    check_for_stray_hemisphere_tags "$filepath"
+    continue
+  fi
 
-    # Remove any stray _L or _R or _LR *not* part of hemi suffix anywhere in the filename except suffix:
-    # This step avoids duplicates of L or R lingering elsewhere:
-    clean_name=$(echo "$clean_name" | sed -E "s/[_-](${hemi})([^hemi]|$)/\2/g")
+  if [[ "$filename" == *"$hemi_label"* ]]; then
+    echo "File $filename already contains hemisphere label — skipping."
+    check_for_stray_hemisphere_tags "$filepath"
+    continue
+  fi
 
-    # Insert hemi suffix before extension
-    final_name="${clean_name%.*}_hemi-${hemi}_sphere.${clean_name##*.}"
+  if [[ "$filename" =~ (den-[^_\.]+) ]]; then
+    density_label="${BASH_REMATCH[1]}"
+    new_filename="${filename/$density_label/${density_label}_${hemi_label}}"
+  else
+    echo "No density label found in: $filename — skipping."
+    check_for_stray_hemisphere_tags "$filepath"
+    continue
+  fi
 
-    # Skip if no change
-    [[ "$filename" == "$final_name" ]] && continue
+  old_path="$filepath"
+  new_path="$dirpath/$new_filename"
 
-    echo "Renaming: $filename → $final_name"
-    mv -v "$dirpath/$filename" "$dirpath/$final_name"
-  done
+  if [[ "$old_path" != "$new_path" ]]; then
+    echo "Renaming:"
+    echo "  $old_path"
+    echo "-> $new_path"
+    mv "$old_path" "$new_path"
+    check_for_stray_hemisphere_tags "$new_path"
+  else
+    check_for_stray_hemisphere_tags "$filepath"
+  fi
 done
