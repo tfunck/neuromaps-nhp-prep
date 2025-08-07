@@ -1,28 +1,25 @@
 #!/bin/bash
 
-ROOT_FOLDER="/Users/tamsin.rogers/Desktop/github/thomas/neuromaps-nhp-prep/share/Inputs/D99"
+ROOT_FOLDER="/Users/tamsin.rogers/Desktop/github/thomas/neuromaps-nhp-prep/share/Inputs/MEBRAINS"
 
 find "$ROOT_FOLDER" -type f -name "*surf*.gii" | while read -r filepath; do
     filename=$(basename "$filepath")
     dir=$(dirname "$filepath")
 
-    # Determine hemisphere letter
     hemi=""
-    if [[ "$filename" =~ left|lh|_L[^a-zA-Z0-9]|_L\.|_L$ ]]; then
+    if [[ "$filename" =~ _lh\. ]]; then
         hemi="L"
-    elif [[ "$filename" =~ right|rh|_R[^a-zA-Z0-9]|_R\.|_R$ ]]; then
+    elif [[ "$filename" =~ _rh\. ]]; then
         hemi="R"
     else
         echo "No hemisphere tag found in $filename, skipping."
         continue
     fi
 
-    # Remove all hemisphere tags from filename
-    newname="$filename"
-    newname=$(echo "$newname" | sed -E 's/(_|-)?(left|right|lh|rh)(_|-|\.|$)/\3/Ig')
-    newname=$(echo "$newname" | sed -E 's/(_|-)?([LR])(_|-|\.|$)/\3/g')
-    newname=$(echo "$newname" | sed -E 's/[_-]+(\.surf\.gii)/\1/')
+    # Remove the hemisphere tag (_lh or _rh)
+    newname=$(echo "$filename" | sed -E 's/_(lh|rh)//')
 
+    # Insert hemi tag before .surf.gii
     base="${newname%.surf.gii}"
     new_filename="${base}_hemi-${hemi}_sphere.surf.gii"
 
