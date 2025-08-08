@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ROOT_FOLDER="/Users/tamsin.rogers/Desktop/github/thomas/neuromaps-nhp-prep/share/Inputs"
+ROOT_FOLDER=""/Users/tamsin.rogers/Desktop/github/n/neuromaps-nhp-prep/share/Inputs""
 
 find "$ROOT_FOLDER" -type f -name "*surf*" | while read -r filepath; do
     dir=$(dirname "$filepath")
