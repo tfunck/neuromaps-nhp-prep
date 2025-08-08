@@ -8,7 +8,8 @@
 
 ## Tools
 
-### Surface Area Computation (`code/surface_area.py`)
+<details>
+<summary><b>Surface Area Computation (<code>code/surface_area.py</code>)</b></summary>
 
 Computes vertex-wise surface area metrics for brain surface meshes using Connectome Workbench.
 
@@ -28,4 +29,6 @@ python code/surface_area.py --dry-run
 ```
 
 **Input:** `.surf.gii` files containing "mid" or "midthickness" in filename  
-**Output:** `.func.gii` files with vertex area metrics in the same directory
+**Output:** `.shape.gii` files with vertex area metrics in the same directory
+
+</details>
