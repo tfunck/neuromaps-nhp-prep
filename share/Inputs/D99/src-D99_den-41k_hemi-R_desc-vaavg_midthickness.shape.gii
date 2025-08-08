@@ -1,0 +1,9 @@
+version https://git-lfs.github.com/spec/v1
+<<<<<<< HEAD
+oid sha256:98b5454d3eab79577d8570fd94d16b57ed1d6e4beee8b9bfc06448df9adc7ae2
+size 191355
+||||||| parent of 7d3bf63 (Compute surface areas from midthickness)
+=======
+oid sha256:f3acb0cca2a54065d38cbbeab711dbe8f141c913775e09a2fe2f5a11ad036b92
+size 191147
+>>>>>>> 7d3bf63 (Compute surface areas from midthickness)
