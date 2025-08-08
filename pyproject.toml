@@ -1,0 +1,15 @@
+[project]
+name = "neuromaps-nhp-prep"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "nibabel>=5.3.2",
+    "niwrap>=0.6.3",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.12.8",
+]
