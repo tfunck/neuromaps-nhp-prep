@@ -16,16 +16,16 @@ Computes vertex-wise surface area metrics for brain surface meshes using Connect
 **Usage:**
 ```bash
 # Process all mid-thickness surfaces in default directory
-python code/surface_area.py
+uv run code/surface_area.py
 
 # Use custom directory
-python code/surface_area.py -i path/to/surfaces
+ur run code/surface_area.py -i path/to/surfaces
 
 # Validate outputs and show verbose information  
-python code/surface_area.py -i ../share/Inputs --validate -v
+uv run code/surface_area.py -i ../share/Inputs --validate -v
 
 # See what files would be processed
-python code/surface_area.py --dry-run
+uv run code/surface_area.py --dry-run
 ```
 
 **Input:** `.surf.gii` files containing "mid" or "midthickness" in filename  
