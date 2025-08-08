@@ -7,7 +7,7 @@ from niwrap import workbench as wb
 import nibabel as nib
 
 
-def detect_density(n_vertices):
+def detect_density(n_vertices: int) -> str:
     """
     Map a vertex count to a density label for (NHP) surface meshes.
     Returns a string label like '32k', '100k' or the exact integer as string for very large/unknown meshes.
@@ -47,7 +47,7 @@ def detect_density(n_vertices):
 
 
 # Map hemisphere from structure name
-def detect_hemi(structure_name, filename):
+def detect_hemi(structure_name: str, filename: str) -> str:
     struct_map = {
         "CortexLeft": "L",
         "CortexRight": "R"
@@ -64,7 +64,7 @@ def detect_hemi(structure_name, filename):
 
 
 # Detect space from filename or folder
-def detect_space(path):
+def detect_space(path: Path) -> str:
     candidates = ["D99", "MEBRAINS", "Yerkes19", "CIVETNMT"]
     for c in candidates:
         if c.lower() in path.lower():
