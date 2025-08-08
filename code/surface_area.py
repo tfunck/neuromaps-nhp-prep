@@ -7,18 +7,43 @@ from niwrap import workbench as wb
 import nibabel as nib
 
 
-# Map vertex count ranges to density labels
 def detect_density(n_vertices):
-    if 9500 <= n_vertices <= 10500:
+    """
+    Map a vertex count to a density label for (NHP) surface meshes.
+    Returns a string label like '32k', '100k' or the exact integer as string for very large/unknown meshes.
+    """
+    if n_vertices < 3000:
+        return "2k"
+    if 3000 <= n_vertices <= 7499:
+        return "5k"
+    if 7500 <= n_vertices <= 12499:
         return "10k"
-    elif 31000 <= n_vertices <= 33000 or n_vertices == 32492:
+    if 12500 <= n_vertices <= 17499:
+        return "15k"
+    if 17500 <= n_vertices <= 22499:
+        return "20k"
+    if 22500 <= n_vertices <= 27499:
+        return "25k"
+    if 27500 <= n_vertices <= 36499:
         return "32k"
-    elif 40000 <= n_vertices <= 42000:  # e.g., 40962 in D99
-        return "32k"
-    elif 160000 <= n_vertices <= 170000:
+    if 36500 <= n_vertices <= 45999:
+        # many NHP "32k" meshes sit here (e.g. 40962). Use 40k label to be explicit,
+        # but you can override with a template lookup if you want HCP-style naming.
+        return "40k"
+    if 46000 <= n_vertices <= 55999:
+        return "50k"
+    if 56000 <= n_vertices <= 70999:
+        return "59k"
+    if 71000 <= n_vertices <= 95999:
+        return "80k"
+    if 96000 <= n_vertices <= 120999:
+        return "100k"
+    if 121000 <= n_vertices <= 140999:
+        return "120k"
+    if 141000 <= n_vertices <= 180999:
         return "164k"
-    else:
-        return str(n_vertices)
+    # fallback: return exact count for uncommon/custom meshes
+    return str(n_vertices)
 
 
 # Map hemisphere from structure name
