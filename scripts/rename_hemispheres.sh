@@ -1,28 +1,28 @@
 #!/bin/bash
 
-ROOT_FOLDER="/Users/tamsin.rogers/Desktop/github/thomas/neuromaps-nhp-prep/share/Inputs/Yerkes19"
+ROOT_FOLDER="/Users/tamsin.rogers/Desktop/github/n/neuromaps-nhp-prep/share/Inputs/Yerkes19"
 
 find "$ROOT_FOLDER" -type f -name "*surf*.gii" | while read -r filepath; do
     filename=$(basename "$filepath")
     dir=$(dirname "$filepath")
 
     hemi=""
-    # Look for single .L. or .R. preceded by underscore (to avoid LR)
-    if [[ "$filename" =~ _\.L\. ]]; then
+    # Look for .L. or .R. in filename (single hemisphere tag)
+    if [[ "$filename" =~ \.L\. ]]; then
         hemi="L"
-    elif [[ "$filename" =~ _\.R\. ]]; then
+    elif [[ "$filename" =~ \.R\. ]]; then
         hemi="R"
     else
         echo "No single hemisphere tag found in $filename, skipping."
         continue
     fi
 
-    # Remove the _.L. or _.R. from the filename
-    newname=$(echo "$filename" | sed -E 's/_\.(L|R)\././')
+    # Remove the .L. or .R. from the filename (only single dot, not double or LR)
+    newname=$(echo "$filename" | sed -E 's/\.([LR])\././')
 
-    # Insert hemi tag before .surf.gii
+    # Insert hemi tag before .surf.gii, without _sphere
     base="${newname%.surf.gii}"
-    new_filename="${base}_hemi-${hemi}_sphere.surf.gii"
+    new_filename="${base}_hemi-${hemi}.surf.gii"
 
     echo "Renaming:"
     echo "  $filepath"
