@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ROOT_FOLDER="/Users/tamsin.rogers/Desktop/github/n/neuromaps-nhp-prep/share/Inputs"
+ROOT_FOLDER="/neuromaps-nhp-prep/share/Inputs"
 CSV_FILE="input_vertices.csv"
 
 # Skip header and read each line

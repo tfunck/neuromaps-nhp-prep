@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ROOT_FOLDER="/Users/tamsin.rogers/Desktop/github/thomas/neuromaps-nhp-prep/share/Inputs"
+ROOT_FOLDER="/neuromaps-nhp-prep/share/Inputs"
 OUTPUT_CSV="input_vertices.csv"
 
 # Write CSV header

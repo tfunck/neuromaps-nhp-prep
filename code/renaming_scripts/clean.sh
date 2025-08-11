@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BASE_DIR="/Users/tamsin.rogers/Desktop/github/n/neuromaps-nhp-prep/share/Inputs"
+BASE_DIR="/neuromaps-nhp-prep/share/Inputs"
 
 find "$BASE_DIR" -type f -name "*surf*" | while read -r filepath; do
   dir=$(dirname "$filepath")
