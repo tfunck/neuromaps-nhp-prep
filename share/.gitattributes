@@ -1,3 +1,0 @@
-*surf.gii filter=lfs diff=lfs merge=lfs -text
-Inputs filter=lfs diff=lfs merge=lfs -text
-Outputs filter=lfs diff=lfs merge=lfs -text
