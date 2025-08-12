@@ -1,25 +1,33 @@
-import sys
+import argparse
 import nibabel as nib
 
-if len(sys.argv) < 2:
-    print("Usage: python vertices.py <path_to_gii_file>")
-    sys.exit(1)
+def main():
+    parser = argparse.ArgumentParser(
+        description="Calculate the number of vertices in a GIFTI (.gii) file."
+    )
+    parser.add_argument(
+        "gii_file",
+        help="Path to the GIFTI (.gii) file"
+    )
 
-input_file = sys.argv[1]
+    args = parser.parse_args()
 
-gii = nib.load(input_file)
-arrays = gii.get_arrays_from_intent('NIFTI_INTENT_POINTSET')
+    gii = nib.load(args.gii_file)
+    arrays = gii.get_arrays_from_intent('NIFTI_INTENT_POINTSET')
 
-if not arrays:
-    # No pointset array found, print 0 or some error code
-    print("0")
-    sys.exit(0)
+    if not arrays:
+        # No pointset array found, print 0 or some error code
+        print("0")
+        return
 
-pointset_array = arrays[0]
-vertices = pointset_array.data.shape[0]
+    pointset_array = arrays[0]
+    vertices = pointset_array.data.shape[0]
 
-# Round to nearest thousand
-vertices_k = round(vertices / 1000)
+    # Round to nearest thousand
+    vertices_k = round(vertices / 1000)
 
-print(f"{vertices_k}k")
-#print(f"{vertices}")
+    print(f"{vertices_k}k")
+    # print(f"{vertices}")
+
+if __name__ == "__main__":
+    main()
