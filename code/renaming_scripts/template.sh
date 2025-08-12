@@ -18,8 +18,9 @@ find "$ROOT_FOLDER" -type f -name "*surf*" | while read -r filepath; do
     # Insert subdir after tpl- and before the rest, with trailing underscore
     filename_fixed=$(echo "$filename_cleaned" | sed -E "s/^tpl-/tpl-${subdir}_/")
 
-    # If filename didn't change, skip
+    # If filename didn't change, warn and skip
     if [[ "$filename" == "$filename_fixed" ]]; then
+        echo "⚠️  Warning: No change for file — $filepath"
         continue
     fi
 
