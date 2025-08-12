@@ -16,9 +16,7 @@ def main():
     arrays = gii.get_arrays_from_intent('NIFTI_INTENT_POINTSET')
 
     if not arrays:
-        # No pointset array found, print 0 or some error code
-        print("0")
-        return
+        raise ValueError("No array found in the GIFTI file.")
 
     pointset_array = arrays[0]
     vertices = pointset_array.data.shape[0]
