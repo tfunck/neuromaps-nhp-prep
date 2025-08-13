@@ -36,17 +36,12 @@ def detect_hemi(structure_name: str, filename: str) -> str:
     # fallback to filename patterns
     lower = filename.lower()
 
-    # Check for BIDS-style hemi patterns first
-    if "hemi-l" in lower:
+    if any(val in lower for val in ("hemi-l", "lh", "left", ".l.")):
         return "L"
-    if "hemi-r" in lower:
+    elif any(val in lower for val in ("hemi-r", "rh", "right", ".r.")):
         return "R"
-
-    # Check for other common patterns
-    if "lh" in lower or "left" in lower or ".l." in lower:
-        return "L"
-    if "rh" in lower or "right" in lower or ".r." in lower:
-        return "R"
+    else:
+        raise Exception(f"Could not detect hemisphere. {structure_name}, {filename}")
 
     # If nothing found, raise exception
     raise Exception(f"Could not detect hemisphere. {structure_name}, {filename}")
