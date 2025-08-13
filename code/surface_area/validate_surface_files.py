@@ -1,8 +1,8 @@
-
 from pathlib import Path
 from utils import detect_density
 import nibabel as nib
 import numpy as np
+
 
 def validate_output_file_data(output_metric: Path) -> bool:
     """
@@ -37,9 +37,7 @@ def validate_output_file_data(output_metric: Path) -> bool:
             validation_results["Number of Maps"] = False
             print(f"✗ Number of Maps: Expected 1, got {num_maps}")
 
-
         if gifti_img.darrays and len(gifti_img.darrays) > 0:
-
             data_array = gifti_img.darrays[0]
 
             # Get actual data for numeric validation
@@ -61,7 +59,9 @@ def validate_output_file_data(output_metric: Path) -> bool:
                 # Validate data ranges (surface areas should be positive)
                 if data_min >= 0:
                     validation_results["Minimum"] = True
-                    print(f"✓ Minimum: {data_min:.6f} (valid non-negative surface area)")
+                    print(
+                        f"✓ Minimum: {data_min:.6f} (valid non-negative surface area)"
+                    )
                 else:
                     validation_results["Minimum"] = False
                     print(f"✗ Minimum: {data_min:.6f} (surface area can't be negative)")

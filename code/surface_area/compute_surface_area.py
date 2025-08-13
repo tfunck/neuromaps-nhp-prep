@@ -1,17 +1,16 @@
 import argparse
 from pathlib import Path
 from typing import Iterable
-import numpy as np
 
-import nibabel as nib
 from niwrap import workbench as wb
 from styxdocker import DockerRunner
 
 from validate_surface_files import validate_output_file_data
-from utils import *
+from utils import find_surface_files, get_map_info
 
 my_runner = DockerRunner()
 my_runner.data_dir = Path(__file__).parent / "../../share/Inputs"
+
 
 def compute_surface_area(input_gifti: Path, output_metric: Path) -> None:
     """
@@ -25,7 +24,6 @@ def compute_surface_area(input_gifti: Path, output_metric: Path) -> None:
 
     wb.surface_vertex_areas(surface=str(input_gifti), metric=str(output_metric))
     print(f"Surface area metric saved to {output_metric}")
-
 
 
 def process_files(
