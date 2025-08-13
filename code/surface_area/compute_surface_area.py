@@ -94,7 +94,7 @@ Examples:
         "-i",
         "--input-dir",
         type=Path,
-        default=Path(SCRIPT_DIR / "../../share/Inputs").resolve(),
+        default=(SCRIPT_DIR / "../../share/Inputs").resolve(),
         help="Directory to search for input files (default: ../share/Inputs)",
     )
 
