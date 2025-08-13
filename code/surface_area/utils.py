@@ -62,6 +62,7 @@ def get_map_info(input_gifti, density=True, hemi=True, space=True):
     surface = nib.load(str(input_gifti))
     map_info = {}
 
+    map_info["NumVertices"] = surface.darrays[0].data.shape[0]
     if density:
         map_info["Density"] = detect_density(surface.darrays[0].data.shape[0])
 

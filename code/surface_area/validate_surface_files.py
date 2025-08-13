@@ -1,16 +1,16 @@
 from pathlib import Path
-from utils import detect_density
+from utils import get_map_info
 import nibabel as nib
 import numpy as np
 
 
-def validate_output_file_data(output_metric: Path) -> bool:
+def validate_output_file_data(input_gifti:Path, output_metric: Path) -> bool:
     """
     Validate the output metric file by checking specific data fields using nibabel.
     """
     try:
-        if not output_metric.exists():
-            print("✗ Output file does not exist")
+        if not output_metric.exists() and not input_gifti.exists():
+            print("✗ Input/Output file does not exist")
             return False
 
         try:
@@ -44,12 +44,11 @@ def validate_output_file_data(output_metric: Path) -> bool:
             data = data_array.data
             if data is not None and len(data) > 0:
                 # Number of vertices
-                num_vertices = data.shape[0]
-                density = detect_density(num_vertices)
-                if density in str(output_metric):
+                num_vertices_output = data.shape[0]
+                num_vertices_input = get_map_info(input_gifti)["NumVertices"]
+                if num_vertices_input == num_vertices_output:
                     validation_results["Number of Vertices"] = True
-                print(f"✓ Number of Vertices: {num_vertices}")
-                print(f"✓ Density: {density}")
+                print(f"✓ Number of Vertices: {num_vertices_output}")
 
                 # Statistical measures
                 data_min = np.min(data)

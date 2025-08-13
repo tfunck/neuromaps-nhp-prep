@@ -8,9 +8,6 @@ from styxdocker import DockerRunner
 from validate_surface_files import validate_output_file_data
 from utils import find_surface_files, get_map_info
 
-my_runner = DockerRunner()
-my_runner.data_dir = Path(__file__).parent / "../../share/Inputs"
-
 
 def compute_surface_area(input_gifti: Path, output_metric: Path) -> None:
     """
@@ -57,7 +54,7 @@ def process_files(
 
             # Test output file if requested
             if validate_output:
-                if validate_output_file_data(output_metric):
+                if validate_output_file_data(input_gifti, output_metric):
                     successful += 1
                 else:
                     failed += 1
@@ -119,9 +116,13 @@ Examples:
     parser.add_argument("-v", "--verbose", action="store_true", help="Verbose output")
 
     args = parser.parse_args()
-
+    
     # Convert input directory to absolute path for consistency
     input_dir = args.input_dir.absolute()
+
+    my_runner = DockerRunner()
+    my_runner.data_dir = input_dir
+
 
     if args.verbose:
         print(f"Input directory: {input_dir}")
