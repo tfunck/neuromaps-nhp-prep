@@ -23,7 +23,7 @@ def find_surface_files(
 
 
 def detect_density(n_vertices: int) -> str:
-    density = str(round(n_vertices / 1000)) + "K"
+    density = str(round(n_vertices / 1000)) + "k"
     return density
 
 
