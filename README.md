@@ -13,9 +13,11 @@
 
 Computes vertex-wise surface area metrics for brain surface meshes using Connectome Workbench within NiWrap.
 
+
 **Usage:**
 ```bash
 # Process all mid-thickness surfaces in default directory
+
 uv run code/surface_area/compute_surface_area.py
 
 # Use custom directory
@@ -26,6 +28,7 @@ uv run code/surface_area/compute_surface_area.py -i ../share/Inputs --validate -
 
 # See what files would be processed
 uv run code/surface_area/compute_surface_area.py --dry-run
+
 ```
 
 **Input:** `.surf.gii` files containing "mid" or "midthickness" in filename  
