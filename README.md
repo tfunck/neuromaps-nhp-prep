@@ -5,3 +5,30 @@
 
 > [!Note]
 > Output directories are named `<target>_<source>`
+
+## Tools
+
+<details>
+<summary><b>Surface Area Computation (<code>code/surface_area.py</code>)</b></summary>
+
+Computes vertex-wise surface area metrics for brain surface meshes using Connectome Workbench.
+
+**Usage:**
+```bash
+# Process all mid-thickness surfaces in default directory
+uv run code/surface_area.py
+
+# Use custom directory
+ur run code/surface_area.py -i path/to/surfaces
+
+# Validate outputs and show verbose information  
+uv run code/surface_area.py -i ../share/Inputs --validate -v
+
+# See what files would be processed
+uv run code/surface_area.py --dry-run
+```
+
+**Input:** `.surf.gii` files containing "mid" or "midthickness" in filename  
+**Output:** `.shape.gii` files with vertex area metrics in the same directory
+
+</details>
