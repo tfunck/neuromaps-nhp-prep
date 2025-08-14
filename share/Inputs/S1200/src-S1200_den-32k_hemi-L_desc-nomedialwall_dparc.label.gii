@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GIFTI xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="http://brainvis.wustl.edu/caret6/xml_schemas/GIFTI_Caret.xsd"
+       Version="1"
+       NumberOfDataArrays="1">
+   <MetaData>
+      <MD>
+         <Name><![CDATA[AnatomicalStructurePrimary]]></Name>
+         <Value><![CDATA[CortexLeft]]></Value>
+      </MD>
+      <MD>
+         <Name><![CDATA[ParentProvenance]]></Name>
+         <Value><![CDATA[/styx_input/0/L.func.gii:
+/usr/local/workbench/bin_linux64/../exe_linux64/wb_command -metric-math x==0 L.func.gii -fixnan -99 -var x /styx_input/0/L_thickness.func.gii
+
+]]></Value>
+      </MD>
+      <MD>
+         <Name><![CDATA[ProgramProvenance]]></Name>
+         <Value><![CDATA[Connectome Workbench
+Type: Command Line Application
+Version: 1.5.0
+Qt Compiled Version: 5.7.0
+Qt Runtime Version: 5.7.0
+Commit: 76441605d20536d81034a64c9d34ec393aa528b9
+Commit Date: 2021-02-16 13:46:47 -0600
+Compiled with OpenMP: YES
+Compiler: g++ (/home/caret/gcc/install/gcc-4.8.5/bin)
+Compiler Version: 4.8.5
+Compiled Debug: NO
+Operating System: Linux
+]]></Value>
+      </MD>
+      <MD>
+         <Name><![CDATA[Provenance]]></Name>
+         <Value><![CDATA[/usr/local/workbench/bin_linux64/../exe_linux64/wb_command -metric-label-import /styx_input/0/L.func.gii  L_nan.label.gii -drop-unused-labels]]></Value>
+      </MD>
+      <MD>
+         <Name><![CDATA[WorkingDirectory]]></Name>
+         <Value><![CDATA[/styx_output]]></Value>
+      </MD>
+   </MetaData>
+   <LabelTable>
+      <Label Key="0" Red="1" Green="1" Blue="1" Alpha="0"><![CDATA[???]]></Label>
+      <Label Key="1" Red="0.333333" Green="0.14902" Blue="0.921569" Alpha="1"><![CDATA[LABEL_1]]></Label>
+   </LabelTable>
+<DataArray Intent="NIFTI_INTENT_LABEL"
+           DataType="NIFTI_TYPE_INT32"
+           ArrayIndexingOrder="RowMajorOrder"
+           Dimensionality="1"
+           Dim0="32492"
+           Encoding="GZipBase64Binary"
+           Endian="LittleEndian"
+           ExternalFileName=""
+           ExternalFileOffset="0">
+   <MetaData>
+   </MetaData>
+   <Data>eJzt3eFqAjEQhVF9/5fu3yLVrrtJZm72HAiFFjJftK0rgj4e7z0//OyTZ/DaXfXtW327V59z1m1U3eZce59p97NUN931HOln0K77THP3bq33/B3o3ti5r2vbOx2bqro69fznTh1HVc6vPvvohoq5q2d+a+Wss/POWjHj6JyOe/83Y8a+o8zYD+CI1Y/TAHA3qY+biY/5adcqSddXKdeFCdex3a+3O/d1fc7S8flUt6ZOPVdaRvakN4zouDr/SkPq3DOzV89cOW/VrBVzZs+Yuf+svUfs+7p35/1G7dVhD2vvBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHzveWE9fn2dOedKH8CdpP//2+F/eHJ/antid1pzUm9aa3edG7vf113bunV1vB879XRp6dBR3VA5v2p2xdzq+xmAOu8eA16///rahNcIAAAAAAAAAAAAAAAAAAAAAAAAAPaX+P5y795PL+l983b5rKAdPvco/TOckvt1r3OX3oruq62rmkd1zmwd2TjjDCv7vm1c3Xa0tbrrr87qBsuyLMuyLGvPRY6d77sdz7XbmXY5z05/RzucI/0Myf2p7Yndac2pvQkSOhMaAQAAAAAAAAAAAAAAAACAff0AMOEK7Q==</Data>
+</DataArray>
+</GIFTI>

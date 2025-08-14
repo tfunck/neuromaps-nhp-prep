@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GIFTI xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="http://brainvis.wustl.edu/caret6/xml_schemas/GIFTI_Caret.xsd"
+       Version="1"
+       NumberOfDataArrays="1">
+   <MetaData>
+      <MD>
+         <Name><![CDATA[AnatomicalStructurePrimary]]></Name>
+         <Value><![CDATA[CortexLeft]]></Value>
+      </MD>
+      <MD>
+         <Name><![CDATA[ParentProvenance]]></Name>
+         <Value><![CDATA[/styx_input/1/wall.func.gii:
+/usr/local/workbench/bin_linux64/../exe_linux64/wb_command -metric-remove-islands /styx_input/0/tpl-D99_den-41k_hemi-L_midthickness.surf.gii /styx_input/1/nan.func.gii wall.func.gii
+
+]]></Value>
+      </MD>
+      <MD>
+         <Name><![CDATA[ProgramProvenance]]></Name>
+         <Value><![CDATA[Connectome Workbench
+Type: Command Line Application
+Version: 1.5.0
+Qt Compiled Version: 5.7.0
+Qt Runtime Version: 5.7.0
+Commit: 76441605d20536d81034a64c9d34ec393aa528b9
+Commit Date: 2021-02-16 13:46:47 -0600
+Compiled with OpenMP: YES
+Compiler: g++ (/home/caret/gcc/install/gcc-4.8.5/bin)
+Compiler Version: 4.8.5
+Compiled Debug: NO
+Operating System: Linux
+]]></Value>
+      </MD>
+      <MD>
+         <Name><![CDATA[Provenance]]></Name>
+         <Value><![CDATA[/usr/local/workbench/bin_linux64/../exe_linux64/wb_command -metric-fill-holes /styx_input/0/tpl-D99_den-41k_hemi-L_midthickness.surf.gii /styx_input/1/wall.func.gii wall_fixed.func.gii]]></Value>
+      </MD>
+      <MD>
+         <Name><![CDATA[WorkingDirectory]]></Name>
+         <Value><![CDATA[/styx_output]]></Value>
+      </MD>
+   </MetaData>
+   <LabelTable>
+      <Label Key="0" Red="1" Green="1" Blue="1" Alpha="0"><![CDATA[???]]></Label>
+   </LabelTable>
+<DataArray Intent="NIFTI_INTENT_NORMAL"
+           DataType="NIFTI_TYPE_FLOAT32"
+           ArrayIndexingOrder="RowMajorOrder"
+           Dimensionality="1"
+           Dim0="40962"
+           Encoding="GZipBase64Binary"
+           Endian="LittleEndian"
+           ExternalFileName=""
+           ExternalFileOffset="0">
+   <MetaData>
+      <MD>
+         <Name><![CDATA[Name]]></Name>
+         <Value><![CDATA[#1]]></Value>
+      </MD>
+   </MetaData>
+   <Data>eJzt3AmK2zAUANDebK42Ry+lBITQvjrJe/DJjBftkmND/OdPq9+ftn2l40atTvNfemGk8krto12pXcNt2jkvHqctMZvP6/9aGQC+wYrvBLvW0JFrRGqdB97XyFyO16HS2lRaQ0bXnp1xwo770tdnbz1b6p66JzsVAAAAAMD7SD3X633u+0lmn4u2Pi/9tHYbdfLZdTx+b5cjN59ayxluAwAAgFGpe8/UMafvP3fkV3qO03NevK3leVDLvtqzgtlnUiPpv0OE9cu1hzjfH9z1bf2Rq29tbKbWkSdEqiy99b8xT1Plf/29It1SW9WOE/cDAAAAAAAAAAAAAAAAAAAAAAAAAN5Z6t16Le/ha30v3+n3A/bWJ5VO73sHvaMQym6/P3T3+0h3rWHhmrS6P2rpnigHz6GPGXV7PRZ7I9XPTxsvremWyhFuM77Pjq9SP7b0QemY177wc7XeMRbXOZdm+AkAAAAAAAAAAAAAAAAAUJL6XWPt+NT5I2lxln45q/Y755HzetNaaVcZeuo4+/v0XXbnU/ptfGp7qYy5bTNtu6o/cvue2O+1PHNtnRrPvXWdbZPb8e7lF8+L2lzNjbncvDZGhRDiMwKAz5Jb21Prv+sD7BPPpdr8ap178TE35nFvnrl9PXVJpdH7nff2927R11+jfZ1LY5eWcZc7Pt7emm58/sq2Zq/RPsmNrXgchJ/cW7ta17MbZRRCCCF6AwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFjr9+d/rEhjd9TKEJelVM/WdOP0Z5xqJzE/nuI+mxkDu+vwLuk+wZPLBgAAkHP7/lmIU5Eb77l5Yf7MtXWuHVvav7W9w2218+jXMp925duSfnzct/fzt9cfgLwV14jSd7javhV5AwB8q9vP+YQQQohvitS1t+U6nbpu96b1VDvKfbufPyFS7fjk9u4dHzvL35JurRy18gshhLgbuXW79/jV6/uJ61wp7zC/sCyr6tSSXqoco2VhndlxFaaT+ns2n578Z+ZYrtyr5epQq5Pxn/IXfor42w==</Data>
+</DataArray>
+</GIFTI>
