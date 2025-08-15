@@ -9,11 +9,10 @@ with open(CSV_FILE, newline="") as csvfile:
     reader = csv.reader(csvfile)
     next(reader)  # skip header
 
-    for row in reader:
-        if len(row) < 3:
-            continue
-
-        subdir, filename, vertex_count = [col.strip() for col in row]
+    for subdir, filename, vertex_count in reader:
+        subdir = subdir.strip()
+        filename = filename.strip()
+        vertex_count = vertex_count.strip()
 
         dir_path = ROOT_FOLDER / subdir
         file_path = dir_path / filename
