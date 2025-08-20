@@ -2,3 +2,5 @@
 *func.gii filter=lfs diff=lfs merge=lfs -text
 *shape.gii filter=lfs diff=lfs merge=lfs -text
 *.nii.gz filter=lfs diff=lfs merge=lfs -text
+data/mebrains/annotations/lh.MEBRAINS_brainmask.func.gii filter=lfs diff=lfs merge=lfs -text
+data/mebrains/annotations/rh.MEBRAINS_brainmask.func.gii filter=lfs diff=lfs merge=lfs -text
