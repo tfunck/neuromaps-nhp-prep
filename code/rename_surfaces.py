@@ -68,8 +68,8 @@ def rename_surf(fpath: Path, regex: dict[str, str]) -> None:
     entity_map = find_entities(fpath=fpath, template=template, regex=regex)
     if entity_map:
         out_fname = (
-            f"tpl-{template}"
-            f"{target if target is not None else ''}"
+            f"src-{template}"
+            f"{f'_to-{target}' if target is not None else ''}"
             f"_den-{density}"
             f"_hemi-{HEMI_MAP[entity_map['hemi']]}"
             f"{f'_desc-{entity_map["desc"]}' if entity_map.get('desc') is not None else ''}"
