@@ -22,17 +22,17 @@ HEMIS = ("L", "R")
 TPLS_MAP = {
     "CIVETNMT": {  # Also uses the D99, there might be better atlas
         "atlas": "D99_atlas_cortical_labels.txt",
-        "surf": "tpl-CIVETNMT_den-41k_hemi-{hemi}_midthickness.surf.gii",
+        "surf": "src-CIVETNMT_den-41k_hemi-{hemi}_midthickness.surf.gii",
         "vol": "D99_atlas_v2.0_sym.nii.gz",
     },
     "D99": {
         "atlas": "D99_atlas_cortical_labels.txt",
-        "surf": "tpl-D99_den-41k_hemi-{hemi}_midthickness.surf.gii",
+        "surf": "src-D99_den-41k_hemi-{hemi}_midthickness.surf.gii",
         "vol": "D99_atlas_v2.0_sym.nii.gz",
     },
     "MEBRAINS": "{hemi}.MEBRAINS_brainmask.func.gii",
     "NMT2": {  # This does an okay job, but there might be a better volume
-        "surf": "tpl-NMT2_den-41k_hemi-{hemi}_desc-sym_midthickness.rsl.gii",
+        "surf": "src-NMT2_den-41k_hemi-{hemi}_desc-sym_midthickness.rsl.gii",
         "vol": "NMT_v2.0_sym_GM_cortical_mask.nii.gz",
     },
     "S1200_10k": "{hemi}.Glasser2016.human.10k_fs_LR.label.gii",
@@ -40,7 +40,7 @@ TPLS_MAP = {
     "Yerkes19_10k": "{hemi}.Markov.monkey.10k_fs_LR.label.gii",
     "Yerkes19_32k": "MacaqueYerkes19_v1.2.corrThickness.32k_fs_LR.dscalar.nii",
 }
-OUT_FNAME = "tpl-{template}_den-{den}k_hemi-{hemi}_desc-nomedialwall_dparc.label.gii"
+OUT_FNAME = "src-{template}_den-{den}k_hemi-{hemi}_desc-nomedialwall_dparc.label.gii"
 
 
 def _save_output(src: Path, tpl_dir: Path, hemi: str) -> None:
