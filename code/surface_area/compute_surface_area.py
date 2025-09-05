@@ -4,9 +4,8 @@ from typing import Iterable
 
 from niwrap import workbench as wb
 from styxdocker import DockerRunner
-
-from validate_surface_files import validate_output_file_data
 from utils import find_surface_files, get_map_info
+from validate_surface_files import validate_output_file_data
 
 
 def compute_surface_area(input_gifti: Path, output_metric: Path) -> None:
@@ -35,7 +34,7 @@ def process_files(
     for input_gifti in input_files:
         map_info = get_map_info(input_gifti)
 
-        new_name = f"tpl-{map_info['Space']}_den-{map_info['Density']}_hemi-{map_info['Hemi']}_desc-vaavg_midthickness.shape.gii"
+        new_name = f"src-{map_info['Space']}_den-{map_info['Density']}_hemi-{map_info['Hemi']}_desc-vaavg_midthickness.shape.gii"
 
         # Generate output filename
         output_metric = input_gifti.parent / new_name
@@ -116,13 +115,12 @@ Examples:
     parser.add_argument("-v", "--verbose", action="store_true", help="Verbose output")
 
     args = parser.parse_args()
-    
+
     # Convert input directory to absolute path for consistency
     input_dir = args.input_dir.absolute()
 
     my_runner = DockerRunner()
     my_runner.data_dir = input_dir
-
 
     if args.verbose:
         print(f"Input directory: {input_dir}")
