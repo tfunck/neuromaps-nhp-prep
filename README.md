@@ -4,7 +4,13 @@
 - `share` - contains data to be used for processing and sharing
 
 > [!Note]
-> Output directories are named `<target>_<source>`
+>
+> - Output directories are named `<target>_<source>`
+
+## Data
+
+- `S1200` refers to data provided from [cross-species alignment]
+- `fsLR` refers to data provided from [neuromaps]
 
 ## Tools
 
@@ -13,8 +19,8 @@
 
 Computes vertex-wise surface area metrics for brain surface meshes using Connectome Workbench within NiWrap.
 
-
 **Usage:**
+
 ```bash
 # Process all mid-thickness surfaces in default directory
 
@@ -23,7 +29,7 @@ uv run code/surface_area/compute_surface_area.py
 # Use custom directory
 ur run code/surface_area/compute_surface_area.py -i path/to/surfaces
 
-# Validate outputs and show verbose information  
+# Validate outputs and show verbose information
 uv run code/surface_area/compute_surface_area.py -i ../share/Inputs --validate -v
 
 # See what files would be processed
@@ -35,3 +41,8 @@ uv run code/surface_area/compute_surface_area.py --dry-run
 **Output:** `.shape.gii` files with vertex area metrics in the same directory
 
 </details>
+
+<!-- Links -->
+
+[cross-species alignment]: https://github.com/TingsterX/alignment_macaque-human
+[neuromaps]: https://netneurolab.github.io/neuromaps/
