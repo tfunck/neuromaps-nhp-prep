@@ -1,0 +1,19 @@
+index	name	abbreviation
+0	Background	BG
+1	Frontal - Left	Frontal_Left
+2	Frontal - Right	Frontal_Right
+3	Motor - Left	Motor_Left
+4	Motor - Right	Motor_Right
+5	Temporal - Left	Temporal_Left
+6	Temporal - Right	Temporal_Right
+7	Parieto-occipital - Left	Parieto-Occipital_Left
+8	Parieto-occipital - Right	Parieto-Occipital_Right
+9	Cautate - Left	CD_Left
+10	Caudate - Right	CD_Right
+11	Putamen - Left	PUT_Left
+12	Putamen - Right	PUT_Right
+13	Thalamus - Left	Thalamus_Left
+14	Thalamus - Right	Thalamus_Right
+15	Hippocampus - Left	HIPP_Left
+16	Hippocampus - Right	HIPP_Right
+17	Cerebellum	Cerebellum

@@ -1,0 +1,59 @@
+index	name	abbreviation
+0	Background	BG
+1	Dorsolateral Prefrontal Cortex - Left	DLPFC_Left  
+2	Dorsolateral Prefrontal Cortex - Right	DLPFC_Right  
+3	Ventrolateral Prefrontal Cortex - Left	VLPFC_Left  
+4	Ventrolateral Prefrontal Cortex - Right	VLPFC_Right  
+5	Orbital Prefrontal Cortex - Left	OPFC_Left  
+6	Orbital Prefrontal Cortex - Right	OPFC_Right  
+7	Ventral Medial Prefrontal Cortex - Left	VMPFC_Left  
+8	Ventral Medial Prefrontal Cortex - Right	VMPFC_Right  
+9	Dorsal Medial Prefrontal Cortex  - Left	DMPFC_Left  
+10	Dorsal Medial Prefrontal Cortex  - Right	DMPFC_Right  
+11	Anterior Cingulate Cortex - Left	ACC_Left  
+12	Anterior Cingulate Cortex - Right	ACC_Right  
+13	Dorsal Premotor Cortex - Left	DPMC_Left  
+14	Dorsal Premotor Cortex - Right	DPMC_Right  
+15	Ventral Premotor Cortex - Left	VPMC_Left  
+16	Ventral Premotor Cortex - Right	VPMC_Right  
+17	Supplemental Motor Cortex - Left	SMC_Left  
+18	Supplemental Motor Cortex - Right	SMC_Right  
+19	Motor Cortex - Left	MC_Left  
+20	Motor Cortex - Right	MC_Right  
+21	Superior Temporal Cortex - Left	STC_Left  
+22	Superior Temporal Cortex - Right	STC_Right  
+23	Inferior Temporal Cortex - Left	ITC_Left  
+24	Inferior Temporal Cortex - Right	ITC_Right  
+25	Rhinal Cortex - Left	RC_Left  
+26	Rhinal Cortex - Right	RC_Right  
+27	Insular Cortex - Left	IC_Left  
+28	Insular Cortex - Right	IC_Right  
+29	Somatosensory Cortex - Left	SSC_Left  
+30	Somatosensory Cortex - Right	SSC_Right  
+31	Parietal Cortex - Left	PC_Left  
+32	Parietal Cortex - Right	PC_Right  
+33	Posterior Cingulate Cortex - Left	PCC_Left  
+34	Posterior Cingulate Cortex - Right	PCC_Right  
+35	Occipital Cortex - Left	OCC_Left  
+36	Occipital Cortex - Right	OCC_Right  
+37	Caudate - Left	CD_Left  
+38	Caudate - Right	CD_Right  
+39	Putamen - Left	PUT_Left  
+40	Putamen - Right	PUT_Right  
+41	Lateral Thalamus - Left	LatTH_Left  
+42	Lateral Thalamus - Right	LatTh_Right  
+43	Medial Thalamus - Left	MdTh_Left  
+44	Medial Thalamus - Right	MdTh_Right  
+45	Hippocampus - Left	HIPP_Left  
+46	Hippocampus - Right	HIPP_Right  
+47	Amygdala - Left	AMY_Left  
+48	Amygdala - Right	AMY_Right  
+49	Substantia nigra - Left	SN_Left  
+50	Substantia nigra - Right	SN_Right  
+51	Globus Pallidus Internal - Left	GPI_Left  
+52	Globus Pallidus Internal - Right	GPI_Right  
+53	Globus Pallidus External - Left	GPE_Left  
+54	Globus Pallidus External - Left	GPE_Right  
+55	Lateral ventricle - Left	LatVentricle_Left  
+56	Lateral ventricle - Right	LatVentricle_Right  
+57	Cerebellum	Cerebellum  
