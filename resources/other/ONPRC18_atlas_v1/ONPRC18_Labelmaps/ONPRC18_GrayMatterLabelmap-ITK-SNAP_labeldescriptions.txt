@@ -1,0 +1,72 @@
+################################################
+# ITK-SnAP Label Description File
+# File format: 
+# IDX   -R-  -G-  -B-  -A--  VIS MSH  LABEL
+# Fields: 
+#    IDX:   Zero-based index 
+#    -R-:   Red color component (0..255)
+#    -G-:   Green color component (0..255)
+#    -B-:   Blue color component (0..255)
+#    -A-:   Label transparency (0.00 .. 1.00)
+#    VIS:   Label visibility (0 or 1)
+#    IDX:   Label mesh visibility (0 or 1)
+#  LABEL:   Label description 
+################################################
+    0     0    0    0        0  0  0    "Clear Label"
+    1   217    0    3        1  1  0    "DLPFC_Left"
+    2   139    0    0        1  1  0    "DLPFC_Right"
+    3     0  235  235        1  1  0    "VLPFC_Left"
+    4   255  215    0        1  1  0    "VLPFC_Right"
+    5     0  250  154        1  1  0    "OPFC_Left"
+    6    85  107   47        1  1  0    "OPFC_Right"
+    7    64  224  208        1  1  0    "VMPFC_Left"
+    8   153   50  204        1  1  0    "VMPFC_Right"
+    9     0  128  128        1  1  0    "DMPFC_Left"
+   10    23  239   84        1  1  0    "DMPFC_Right"
+   11   205   92   92        1  1  0    "ACC_Left"
+   12   217  217   40        1  1  0    "ACC_Right"
+   13    30  144  255        1  1  0    "DPMC_Left"
+   14   240  128  128        1  1  0    "DPMC_Right"
+   15   152  251  152        1  1  0    "VPMC_Left"
+   16   160   82   45        1  1  0    "VPMC_Right"
+   17     0  255  255        1  1  0    "SMC_Left"
+   18   255    0  255        1  1  0    "SMC_Right"
+   19   255    0    0        1  1  0    "MC_Left"
+   20     0  255    0        1  1  0    "MC_Right"
+   21    70  107  176        1  1  0    "STC_Left"
+   22   199   21   30        1  1  0    "STC_Right"
+   23     0  235  212        1  1  0    "ITC_Left"
+   24   244  228    0        1  1  0    "ITC_Right"
+   25   174  255    0        1  1  0    "RC_Left"
+   26   255  234    0        1  1  0    "RC_Right"
+   27    95  158  160        1  1  0    "IC_Left"
+   28     0  128    0        1  1  0    "IC_Right"
+   29   239  147    0        1  1  0    "SSC_Left"
+   30     0    0  205        1  1  0    "SSC_Right"
+   31   255    0  255        1  1  0    "PC_Left"
+   32    64  230   18        1  1  0    "PC_Right"
+   33     0  107  239        1  1  0    "PCC_Left"
+   34   138   43  226        1  1  0    "PCC_Right"
+   35   149    0  255        1  1  0    "OCC_Left"
+   36    42  180  230        1  1  0    "OCC_Right"
+   37   102  205  170        1  1  0    "CD_Left"
+   38     0    0  128        1  1  0    "CD_Right"
+   39     0  139  139        1  1  0    "PUT_Left"
+   40    46  139   87        1  1  0    "PUT_Right"
+   41    52  165   42        1  1  0    "LatTH_Left"
+   42   221   45   45        1  1  0    "LatTh_Right"
+   43   112  214  219        1  1  0    "MdTh_Left"
+   44   218  112  214        1  1  0    "MdTh_Right"
+   45    33  122  199        1  1  0    "HIPP_Left"
+   46   199   43   88        1  1  0    "HIPP_Right"
+   47   255   69    0        1  1  0    "AMY_Left"
+   48    80  221  221        1  1  0    "AMY_Right"
+   49    75    0  130        1  1  0    "SN_Left"
+   50   255  182  193        1  1  0    "SN_Right"
+   51    60  179  113        1  1  0    "GPI_Left"
+   52   190  180   65        1  1  0    "GPI_Right"
+   53   235  140   31        1  1  0    "GPE_Left"
+   54    31  212  218        1  1  0    "GPE_Right"
+   55    10  217  253        1  1  0    "LatVentricle_Left"
+   56    34    0  226        1  1  0    "LatVentricle_Right"
+   57   255  105  180        1  1  0    "Cerebellum"

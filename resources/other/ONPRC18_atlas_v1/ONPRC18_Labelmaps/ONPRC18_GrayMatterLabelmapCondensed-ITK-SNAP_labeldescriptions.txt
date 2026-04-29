@@ -1,0 +1,32 @@
+################################################
+# ITK-SnAP Label Description File
+# File format: 
+# IDX   -R-  -G-  -B-  -A--  VIS MSH  LABEL
+# Fields: 
+#    IDX:   Zero-based index 
+#    -R-:   Red color component (0..255)
+#    -G-:   Green color component (0..255)
+#    -B-:   Blue color component (0..255)
+#    -A-:   Label transparency (0.00 .. 1.00)
+#    VIS:   Label visibility (0 or 1)
+#    IDX:   Label mesh visibility (0 or 1)
+#  LABEL:   Label description 
+################################################
+    0     0    0    0        0  0  0    "Clear Label"
+    1   217    0    3        1  1  1    "Frontal_Left"
+    2    74    0  139        1  1  1    "Frontal_Right"
+    3     0    0  255        1  1  1    "Motor_Left"
+    4   255  255    0        1  1  1    "Motor_Right"
+    5     0  255  255        1  1  1    "Temporal_Left"
+    6   255    0  255        1  1  1    "Temporal_Right"
+    7   230  139    1        1  1  1    "Parieto-Occipital_Left"
+    8     0  239    4        1  1  1    "Parieto-Occipital_Right"
+    9   102  205  170        1  1  1    "CD_Left"
+   10     0    0  128        1  1  1    "CD_Right"
+   11     0  139  139        1  1  1    "PUT_Left"
+   12    46  139   87        1  1  1    "PUT_Right"
+   13     0  139  139        1  1  1    "Thalamus_Left"
+   14    46  139   87        1  1  1    "Thalamus_Right"
+   45    33  122  199        1  1  1    "HIPP_Left"
+   46   199   43   88        1  1  1    "HIPP_Right"
+   57   255  105  180        1  1  1    "Cerebellum"
