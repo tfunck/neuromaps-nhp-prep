@@ -1,0 +1,10 @@
+FreeSurfer files for FSAVG.
+
+Use tpl-fsaverage_den-164k_hemi-*_sphere.surf.gii in wb_command for the
+surface-based transformations.
+
+For registration using surftracc (CIVET tools), any sphere can be used
+(since the .sm map is vertex based and not coordinate bases) so spheres
+using CIVET's inflate_to_sphere_implicit were used. Note: Use the same
+inflation tool on both surfaces for registration to ensure similar
+projections on the sphere.
