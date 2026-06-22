@@ -4,7 +4,7 @@ This document describes the annotation files and the naming convention used to i
 
 ## Naming Convention
 
-All annotation files follow this pattern:
+Filenames follow the [BIDS](https://bids-specification.readthedocs.io/en/stable/) specification as closely as possible.
 
 ```
 src-{space}_den-{den}k_hemi-{hemi}_{subLabelCode}-{subLabel}_desc-{annotationCode}_annot.{extension}
@@ -43,17 +43,29 @@ These codes appear after `desc-` in the filename and indicate the kind of data s
 The `subLabelCode-subLabel` portion of the filename identifies the specific source of the data (e.g., which dataset, atlas, or parcellation it comes from). When naming or interpreting sub-labels, refer to:
 
 - [BIDS Specification: Entities](https://bids-specification.readthedocs.io/en/stable/appendices/entities.html#entities)
-- [CMI RBC Data Dictionary](https://github.com/childmindresearch/rbc/blob/main/docs/data_dictionary.md)
 
 ## Example
+
+**Surface file:**
 
 ```
 src-Yerkes19_den-10k_hemi-L_atlas-Yeo7Networks_desc-PC_annot.label.gii
 ```
 
-This file contains:
 - **Space:** Yerkes19
 - **Density:** 10k vertices
 - **Hemisphere:** Left
 - **Atlas:** Yeo7Networks
 - **Annotation type:** Parcellation (PC)
+
+
+**Volume file:**
+
+```
+src-MBM_den-08mm_desc-BM_annot.nii
+```
+
+- **Space:** MBM
+- **Density:** 0.8mm voxel resolution
+- **Hemisphere / sub-label:** n/a (omitted for volume files)
+- **Annotation type:** Brain Mask (BM)
