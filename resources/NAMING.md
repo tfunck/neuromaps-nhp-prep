@@ -62,10 +62,9 @@ src-Yerkes19_den-10k_hemi-L_atlas-Yeo7Networks_desc-PC_annot.label.gii
 **Volume file:**
 
 ```
-src-MBM_den-08mm_desc-BM_annot.nii
+src-MBM_den-0p8mm_desc-BM_annot.nii
 ```
 
 - **Space:** MBM
-- **Density:** 0.8mm voxel resolution
-- **Hemisphere / sub-label:** n/a (omitted for volume files)
+- **Density:** 0.8mm resolution
 - **Annotation type:** Brain Mask (BM)
